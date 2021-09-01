@@ -1163,7 +1163,11 @@ typedef void (*XIDProc)(
     XPointer
 );
 
+#if defined(WIN32)
+typedef unsigned long long XIMStyle;
+#else
 typedef unsigned long XIMStyle;
+#endif
 
 typedef struct {
     unsigned short count_styles;

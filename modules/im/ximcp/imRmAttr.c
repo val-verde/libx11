@@ -604,7 +604,7 @@ _XimValueToAttribute(
 	    return False;
 	}
 
-	*((CARD8 *)buf) = (CARD8)(long)value;
+	*((CARD8 *)buf) = (CARD8)(uintptr_t)value;
 	*len = ret_len;
 	break;
 
@@ -615,7 +615,7 @@ _XimValueToAttribute(
 	    return False;
 	}
 
-	*((CARD16 *)buf) = (CARD16)(long)value;
+	*((CARD16 *)buf) = (CARD16)(uintptr_t)value;
 	*len = ret_len;
 	break;
 
@@ -628,7 +628,7 @@ _XimValueToAttribute(
 	    return False;
 	}
 
-	*((CARD32 *)buf) = (CARD32)(long)value;
+	*((CARD32 *)buf) = (CARD32)(uintptr_t)value;
 	*len = ret_len;
 	break;
 

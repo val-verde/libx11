@@ -874,7 +874,7 @@ _XimEncodeResetState(
     XIMResetState	*out;
 
     out = (XIMResetState *)((char *)top + info->offset);
-    *out = (XIMResetState)val;
+    *out = (XIMResetState)(uintptr_t)val;
     return True;
 }
 
@@ -930,7 +930,7 @@ _XimEncodeHotKetState(
     XIMHotKeyState	*out;
 
     out = (XIMHotKeyState *)((char *)top + info->offset);
-    *out = (XIMHotKeyState)val;
+    *out = (XIMHotKeyState)(uintptr_t)val;
     return True;
 }
 
@@ -995,7 +995,7 @@ _XimEncodeLong(
     unsigned long	*out;
 
     out = (unsigned long *)((char *)top + info->offset);
-    *out = (unsigned long)val;
+    *out = (unsigned long)(uintptr_t)val;
     return True;
 }
 
@@ -1034,7 +1034,7 @@ _XimEncodeLineSpace(
     int			*out;
 
     out = (int *)((char *)top + info->offset);
-    *out = (long)val;
+    *out = (long)(uintptr_t)val;
     return True;
 }
 
@@ -1060,7 +1060,7 @@ _XimEncodePreeditState(
     XIMPreeditState	*out;
 
     out = (XIMPreeditState *)((char *)top + info->offset);
-    *out = (XIMPreeditState)val;
+    *out = (XIMPreeditState)(uintptr_t)val;
     return True;
 }
 
