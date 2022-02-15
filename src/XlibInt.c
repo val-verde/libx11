@@ -1992,7 +1992,7 @@ int _XAccessFile(path)
 #ifdef WIN32
 #undef _Xdebug
 int _Xdebug = 0;
-int *_Xdebug_p = &_Xdebug;
+static int *_Xdebug_p = &_Xdebug;
 void (**_XCreateMutex_fn_p)(LockInfoPtr) = &_XCreateMutex_fn;
 void (**_XFreeMutex_fn_p)(LockInfoPtr) = &_XFreeMutex_fn;
 void (**_XLockMutex_fn_p)(LockInfoPtr
