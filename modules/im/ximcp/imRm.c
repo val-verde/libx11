@@ -491,7 +491,7 @@ _XimDefaultFocusWindow(
     Xic			 ic = (Xic)parm;
     Window		*out;
 
-    if(ic->core.client_window == (Window)NULL) {
+    if(ic->core.client_window == (Window)(intptr_t)NULL) {
 	return True;
     }
 
@@ -601,7 +601,7 @@ _XimDefaultArea(
     XRectangle		 area;
     XRectangle		*out;
 
-    if(ic->core.focus_window == (Window)NULL) {
+    if(ic->core.focus_window == (Window)(intptr_t)NULL) {
 	return True;
     }
     if(XGetGeometry(im->core.display, (Drawable)ic->core.focus_window,
@@ -632,7 +632,7 @@ _XimDefaultColormap(
     XWindowAttributes	 win_attr;
     Colormap		*out;
 
-    if(ic->core.client_window == (Window)NULL) {
+    if(ic->core.client_window == (Window)(intptr_t)NULL) {
 	return True;
     }
     if(XGetWindowAttributes(im->core.display, ic->core.client_window,
@@ -849,7 +849,7 @@ _XimEncodeWindow(
     Window		*out;
 
     out = (Window *)((char *)top + info->offset);
-    *out = (Window)val;
+    *out = (Window)(intptr_t)val;
     return True;
 }
 
@@ -969,7 +969,7 @@ _XimEncodeColormap(
     Colormap		*out;
 
     out = (Colormap *)((char *)top + info->offset);
-    *out = (Colormap)val;
+    *out = (Colormap)(intptr_t)val;
     return True;
 }
 
@@ -982,7 +982,7 @@ _XimEncodeStdColormap(
     Atom		*out;
 
     out = (Atom *)((char *)top + info->offset);
-    *out = (Atom)val;
+    *out = (Atom)(intptr_t)val;
     return True;
 }
 
@@ -1008,7 +1008,7 @@ _XimEncodeBgPixmap(
     Pixmap		*out;
 
     out = (Pixmap *)((char *)top + info->offset);
-    *out = (Pixmap)val;
+    *out = (Pixmap)(intptr_t)val;
     return True;
 }
 
@@ -1047,7 +1047,7 @@ _XimEncodeCursor(
     Cursor		*out;
 
     out = (Cursor *)((char *)top + info->offset);
-    *out = (Cursor)val;
+    *out = (Cursor)(intptr_t)val;
     return True;
 }
 
@@ -2782,7 +2782,7 @@ _XimEncodeLocalTopValue(
     XIMArg		*p = (XIMArg *)val;
 
     if (res->xrm_name == XrmStringToQuark(XNClientWindow)) {
-	ic->core.client_window = (Window)p->value;
+	ic->core.client_window = (Window)(intptr_t)p->value;
 	if (ic->core.focus_window == (Window)0)
 	    ic->core.focus_window = ic->core.client_window;
 	if (flag) {
@@ -2796,14 +2796,14 @@ _XimEncodeLocalTopValue(
 	        _XUnregisterFilter(ic->core.im->core.display,
 			ic->core.focus_window, _XimLocalFilter, (XPointer)ic);
 	    }
-	    ic->core.focus_window = (Window)p->value;
+	    ic->core.focus_window = (Window)(intptr_t)p->value;
 	    if (flag) {
 	        _XRegisterFilterByType(ic->core.im->core.display,
 			ic->core.focus_window, KeyPress, KeyRelease,
 			_XimLocalFilter, (XPointer)ic);
 	    }
 	} else
-	    ic->core.focus_window = (Window)p->value;
+	    ic->core.focus_window = (Window)(intptr_t)p->value;
     }
     return True;
 }
@@ -2822,7 +2822,7 @@ _XimEncodeLocalPreeditValue(
 
 	if (!(XGetRGBColormaps(ic->core.im->core.display,
 				ic->core.focus_window, &colormap_ret,
-				&count, (Atom)p->value)))
+				&count, (Atom)(intptr_t)p->value)))
 	    return False;
 
 	Xfree(colormap_ret);
@@ -2844,7 +2844,7 @@ _XimEncodeLocalStatusValue(
 
 	if (!(XGetRGBColormaps(ic->core.im->core.display,
 				ic->core.focus_window, &colormap_ret,
-				&count, (Atom)p->value)))
+				&count, (Atom)(intptr_t)p->value)))
 	    return False;
 
 	Xfree(colormap_ret);

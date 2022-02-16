@@ -944,7 +944,7 @@ _XimEncodeTopValue(
     XIMArg		*p)
 {
     if (res->xrm_name == XrmStringToQuark(XNClientWindow)) {
-	ic->core.client_window = (Window)p->value;
+	ic->core.client_window = (Window)(intptr_t)p->value;
 	if (ic->core.focus_window == (Window)0)
 	    ic->core.focus_window = ic->core.client_window;
 	_XimRegisterFilter(ic);
@@ -952,10 +952,10 @@ _XimEncodeTopValue(
     } else if (res->xrm_name == XrmStringToQuark(XNFocusWindow)) {
 	if (ic->core.client_window) {
 	    _XimUnregisterFilter(ic);
-	    ic->core.focus_window = (Window)p->value;
+	    ic->core.focus_window = (Window)(intptr_t)p->value;
 	    _XimRegisterFilter(ic);
 	} else /* client_window not yet */
-	    ic->core.focus_window = (Window)p->value;
+	    ic->core.focus_window = (Window)(intptr_t)p->value;
     }
     return True;
 }
@@ -972,7 +972,7 @@ _XimEncodePreeditValue(
 
 	if (!(XGetRGBColormaps(ic->core.im->core.display,
 				ic->core.focus_window, &colormap_ret,
-				&count, (Atom)p->value)))
+				&count, (Atom)(intptr_t)p->value)))
 	    return False;
 
 	XFree(colormap_ret);
@@ -1023,7 +1023,7 @@ _XimEncodeStatusValue(
 
 	if (!(XGetRGBColormaps(ic->core.im->core.display,
 				ic->core.focus_window, &colormap_ret,
-				&count, (Atom)p->value)))
+				&count, (Atom)(intptr_t)p->value)))
 	    return False;
 
 	XFree(colormap_ret);
